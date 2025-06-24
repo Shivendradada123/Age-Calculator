@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Age Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      padding: 50px;
+    }
+    .container {
+      background: white;
+      padding: 80px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #aaa;
+      display: inline-block;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      color: green;
+      
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #333;
+    }
+   .footer-text {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  border: 2px solid aqua;
+  border-radius: 10px;
+  font-style: italic;
+  font-weight: bold;
+  color: aqua;
+  background-color: transparent;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2 style="color: red;">❤</h2>
+    <h2>Age Calculator</h2>
+    <label> Enter your Date of Birth<br><br>
+    <input type="date" id="dob" />
+    <button onclick="calculateAge()">Calculate Age</button>
+    <div id="result"></div>
+  </div>
+  <p class="footer-text">made by shivendra</p>
+
+
+  <script>
+    function calculateAge() {
+      const dobInput = document.getElementById('dob').value;
+      if (!dobInput) {
+        alert("Please enter your date of birth!");
+        return;
+      }
+  const dob = new Date(dobInput);
+  const today = new Date();
+  let years = today.getFullYear() - dob.getFullYear();
+  let months = today.getMonth() - dob.getMonth();
+  let days = today.getDate() - dob.getDate();
+
+       if (days < 0) {
+    months--;
+    days += new Date(today.getFullYear(), today.getMonth(), 0).getDate(); 
+  }
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+  const result = `Your age is: <b>${years}</b> years, <b>${months}</b> months, <b>${days}</b> days`;
+  document.getElementById('result').innerHTML = result;
+}
+
+  </script>
+
+</body>
+</html>
